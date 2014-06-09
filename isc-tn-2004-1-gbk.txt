@@ -48,15 +48,6 @@ Copyright Notice
 
 
 
-
-
-
-
-Abley                                                           [Page 1]
-
-                         DNS Load Distribution                March 2004
-
-
 Table of Contents
 
    1.    设计目标 . . . . . . . . . . . . . . . . . . . . . . . .  3
@@ -104,15 +95,6 @@ Table of Contents
 
 
 
-
-
-
-
-Abley                                                           [Page 2]
-
-                         DNS Load Distribution                March 2004
-
-
 1. 设计目标
 
    This paper describes a alternative to the deployment of individual
@@ -149,24 +131,6 @@ Abley                                                           [Page 2]
    also connected to this common subnet (see Figure 1).
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Abley                                                           [Page 3]
-
-                         DNS Load Distribution                March 2004
 
 
               ,----------------------------------------.
@@ -222,13 +186,6 @@ Abley                                                           [Page 3]
    address.
 
 
-
-
-Abley                                                           [Page 4]
-
-                         DNS Load Distribution                March 2004
-
-
    Each router provides routes to the rest of the Internet, probably
    including a gateway of last resort.
 
@@ -273,17 +230,6 @@ Abley                                                           [Page 4]
    same client to be delivered to different hosts. Any route selection
    algorithm on the gateway routers will provide an distribution of
    request traffic which allows DNS transactions to proceed.
-
-
-
-
-
-
-
-Abley                                                           [Page 5]
-
-                         DNS Load Distribution                March 2004
-
 
 3.2.2 Stateful Transactions
 
@@ -332,15 +278,6 @@ Abley                                                           [Page 5]
    processing it is necessary that all the packets enter the cluster via
    the same gateway router.
 
-
-
-
-
-Abley                                                           [Page 6]
-
-                         DNS Load Distribution                March 2004
-
-
    This imposes the requirement on upstream routers that the route to
    the service address be stable for a single flow, which can be
    accommodated, for example, by having those routers use flow hashing
@@ -386,15 +323,6 @@ Abley                                                           [Page 6]
    for cloneable loopback interfaces added) and FreeBSD 5 (which
    supports cloneable loopback interfaces as released).
 
-
-
-
-
-
-
-Abley                                                           [Page 7]
-
-                         DNS Load Distribution                March 2004
 
 
 5. Name Server Considerations
@@ -445,14 +373,6 @@ Abley                                                           [Page 7]
    are avoided.
 
 
-
-
-
-Abley                                                           [Page 8]
-
-                         DNS Load Distribution                March 2004
-
-
 5.3 Self-Consistency
 
    ISC BIND 9 is designed in such a way that anomalous run-time
@@ -501,14 +421,6 @@ Abley                                                           [Page 8]
    if they fail. External consistency checks are possible based on
    transactions against individual hosts' unicast address, and against
    the service address in general. Testing transactions directed at the
-
-
-
-Abley                                                           [Page 9]
-
-                         DNS Load Distribution                March 2004
-
-
    service address on specific hosts is not straightforward due to the
    anycast routing of the service address.
 
@@ -540,6 +452,8 @@ Abley                                                           [Page 9]
    is effective for DNS service; those wishing to deploy protocols whose
    transactions are substantially different in nature to DNS are advised
    to test thoroughly.
+   F根名字服务器的部署使用到本文所描述的技术，它提供的数据表明此技术对DNS
+   服务是有效的；
 
 7. Acknowledgements
 
@@ -557,13 +471,6 @@ References
 
    [3]   Mockapetris, P., "Domain names - implementation and
          specification", STD 13, RFC 1035, November 1987.
-
-
-
-Abley                                                          [Page 10]
-
-                         DNS Load Distribution                March 2004
-
 
    [4]   Rekhter, Y. and T. Li, "A Border Gateway Protocol 4 (BGP-4)",
          RFC 1771, March 1995.
@@ -607,20 +514,6 @@ Author's Address
 
 
 
-
-
-
-
-
-
-
-
-
-Abley                                                          [Page 11]
-
-                         DNS Load Distribution                March 2004
-
-
 Appendix A. Example Router Configurations
 
 A.1 Cisco IOS
@@ -637,44 +530,6 @@ A.1 Cisco IOS
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Abley                                                          [Page 12]
-
-                         DNS Load Distribution                March 2004
 
 
 A.2 Juniper JUNOS
@@ -727,12 +582,6 @@ Appendix B. Example GNU Zebra Configuration
         passive-interface lo1
 
 
-
-Abley                                                          [Page 13]
-
-                         DNS Load Distribution                March 2004
-
-
 Appendix C. Example ISC BIND 9 Configuration
 
        options {
@@ -782,13 +631,6 @@ Appendix D. Example ISC BIND 9 Wrapper Script
 
          ifconfig ${interface} down
 
-
-
-Abley                                                          [Page 14]
-
-                         DNS Load Distribution                March 2004
-
-
          logger -t ${log_tag} interface ${interface} lowered
 
          # Delay before restarting; if there's a configuration
@@ -800,45 +642,3 @@ Abley                                                          [Page 14]
 
        logger -t ${log_tag} exiting due to stop file ${stop_file}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Abley                                                          [Page 15]
-
